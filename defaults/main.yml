@@ -5,4 +5,4 @@ pach_fullname: "{{pach_name}}-1.6.9"
 pach_platform: linux-amd64
 pach_checksums:
   v1.6.9:
-    linux-amd64: sha256:8248a0f85616bb0504f86d581300e6bed36494e00345ae71c673e59160f75cd8
+    linux-amd64: sha256:13df608759c2fbb50e891d44b0d87883958e5981e79cd6c5d58d9f2d2284aaa1
