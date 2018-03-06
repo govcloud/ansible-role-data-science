@@ -45,6 +45,8 @@
 
 - name: Install Pachyderm via Helm
   shell: helm install --namespace pachyderm --name pachyderm stable/pachyderm
+  environment:
+    PATH: $PATH:/usr/local/bin
   args:
     executable: /bin/bash
 
