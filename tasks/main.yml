@@ -1,6 +1,4 @@
 ---
-- include: pachyderm.yml
-
 - name: Upgrade pip
   pip:
     name: pip
@@ -15,3 +13,5 @@
     - pandas
     - pygments
     - scipy
+
+- include: pachyderm.yml

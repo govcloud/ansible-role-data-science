@@ -11,7 +11,7 @@
     - name: download...
       become: yes
       get_url:
-        url: 'https://github.com/pachyderm/pachyderm/releases/download/v1.6.9/pachctl_1.6.9_linux_amd64.tar.gz'
+        url: 'https://github.com/pachyderm/pachyderm/releases/download/v1.6.7/pachctl_1.6.7_linux_amd64.tar.gz'
         dest: "/tmp/{{ pach_tgz }}"
         checksum: "{{ pach_checksum }}"
         mode: 0644
@@ -19,7 +19,7 @@
     - name: make install dir
       become: yes
       file:
-        path: '/usr/share/kubernetes'
+        path: '/usr/local/bin'
         state: directory
         mode: 0755
 
@@ -28,8 +28,8 @@
       unarchive:
         copy: no
         src: "/tmp/{{ pach_tgz }}"
-        dest: '/usr/share/kubernetes'
-        creates: "/usr/share/kubernetes/{{ pach_fullname }}"
+        dest: '/usr/local/bin'
+        creates: "/usr/local/bin/{{ pach_fullname }}"
 
   always:
     - name: cleanup...
