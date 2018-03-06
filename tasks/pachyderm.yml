@@ -11,7 +11,7 @@
     - name: download...
       become: yes
       get_url:
-        url: 'https://github.com/pachyderm/pachyderm/releases/download/v1.6.7/pachctl_1.6.7_linux_amd64.tar.gz'
+        url: 'https://github.com/pachyderm/pachyderm/releases/download/v1.6.9/pachctl_1.6.9_linux_amd64.tar.gz'
         dest: "/tmp/{{ pach_tgz }}"
         checksum: "{{ pach_checksum }}"
         mode: 0644
@@ -47,6 +47,13 @@
 
 - name: Install Pachyderm via Helm
   shell: helm install --namespace pachyderm --name pachyderm stable/pachyderm
+  environment:
+    PATH: $PATH:/usr/local/bin
+  args:
+    executable: /bin/bash
+
+- name: Allow services to act as admin general bypass for Pachyderm
+  shell: pachctl deploy local --dashboard-only --namespace pachyderm
   environment:
     PATH: $PATH:/usr/local/bin
   args:
