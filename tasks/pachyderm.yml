@@ -37,3 +37,10 @@
       file:
         path: "/tmp/{{ pach_tgz }}"
         state: absent
+
+- name: Install Pachyderm via Helm
+  become: yes
+  shell: helm install --namespace pachyderm --name pachyderm stable/pachyderm
+  args:
+    executable: /bin/bash
+
