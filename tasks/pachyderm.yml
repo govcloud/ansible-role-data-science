@@ -38,8 +38,10 @@
         path: "/tmp/{{ pach_tgz }}"
         state: absent
 
-- name: Add /usr/local/bin to super user
-  shell: export PATH=$PATH:/usr/local/bin
+- name: Initialize  Helm
+  shell: helm init
+  environment:
+    PATH: $PATH:/usr/local/bin
   args:
     executable: /bin/bash
 
@@ -52,5 +54,7 @@
 
 - name: Allow services to act as admin general bypass for Pachyderm
   shell: kubectl create clusterrolebinding serviceaccounts-cluster-admin --clusterrole=cluster-admin --group=system:serviceaccounts
+  environment:
+    PATH: $PATH:/usr/local/bin
   args:
     executable: /bin/bash
