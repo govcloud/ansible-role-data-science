@@ -1,0 +1,14 @@
+services: docker
+env:
+- distro: centos7
+  test_idempotence: false
+script:
+- export container_id=$(date +%s)
+- export cleanup=false
+- wget -O ${PWD}/tests/test.sh https://gist.githubusercontent.com/sylus/e5d6eb8852d649ae78477b2daf86e707/raw
+- chmod +x ${PWD}/tests/test.sh
+- "${PWD}/tests/test.sh"
+notifications:
+  slack:
+    secure: mPJdKc/PlKdxCeUoFmLiaTyOsqpTSziJYRNoOz3dIwvg6GHeCLTnd8CbkXw4tU370HQtfMbDNlPgbTa7j9G+v+ugEZSB6IbsFwbrs5di3KgoN9cm4zYcxl7kM8vkh5XLgqrne4xLj//+suIdNiRwnFezUN6OzG5h3LuaIQtL7eofwGkaHMEd1GZOmeJF/pX6LBw8MI42y7NJRh+n2RlbdzoJO32x5SkRAwFbN5P3QGK1qhL3eF5kJA3Ede03WXlFdI++x9f2uvxL1NWET7aI/Q1Talti2u93WOev4QziJHRMYnFxJdHOfPvEY3hlsoBLVC25cmY/e0S1z0a+Ot1QvhZ34E+dOa9/SrRW02WFDe1Bd2njcbG/JhVZITsxoRE2UGi6Wjy2tQnByX+p4wZZfQLBMUfVJP0ljOQkAW3qZx1ggOTo0wS8ytPu0O3/QAPRSvS4P5okQxiRh/OUqGtZ6/ZboWc4LP5hcJiEUDsgNtYMmRVHSuY0ipkSeNW5VFsGNK2pgYIHfNheQAaOV6lTDfLgvu1OhXhAbD94Tzvto1f3BboDRqwQZUXt6QtSzRshfLLiiQh8AmRvauWaCXTcHxqdc0wH4AVkRSvbaerUugER/clSNF1KxOoO8LQfFWuiyfqDbSgpsayIM+tnaGb2iqmiQVNfzXg0Pl3ceEKPlfU=
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
