@@ -38,6 +38,11 @@
         path: "/tmp/{{ pach_tgz }}"
         state: absent
 
+- name: Add /usr/local/bin to super user
+  shell: export PATH=$PATH:/usr/local/bin
+  args:
+    executable: /bin/bash
+
 - name: Install Pachyderm via Helm
   shell: helm install --namespace pachyderm --name pachyderm stable/pachyderm
   args:
