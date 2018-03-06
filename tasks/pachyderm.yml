@@ -2,7 +2,7 @@
 - name: check for installation of pach
   become: yes
   stat:
-    path: "/usr/local/bin/{{ pach_tgz }}"
+    path: "/usr/local/bin/pachctl"
   changed_when: false
   register: pach_dir
 
@@ -11,7 +11,7 @@
     - name: download...
       become: yes
       get_url:
-        url: 'https://github.com/pachyderm/pachyderm/releases/download/v1.6.9/pachctl_1.6.9_linux_amd64.tar.gz'
+        url: 'https://github.com/pachyderm/pachyderm/releases/download/v1.7.0rc2/pachctl_1.7.0rc2_linux_amd64.tar.gz'
         dest: "/tmp/{{ pach_tgz }}"
         checksum: "{{ pach_checksum }}"
         mode: 0644
@@ -26,10 +26,11 @@
     - name: unarchive
       become: yes
       unarchive:
+        extra_opts: '--strip-components=1'
         copy: no
         src: "/tmp/{{ pach_tgz }}"
         dest: '/usr/local/bin'
-        creates: "/usr/local/bin"
+        creates: "/usr/local/bin/pachctl"
 
   always:
     - name: cleanup...
@@ -46,7 +47,7 @@
     executable: /bin/bash
 
 - name: Install Pachyderm via Helm
-  shell: helm install --namespace pachyderm --name pachyderm stable/pachyderm
+  shell: helm install --namespace pachyderm --name pachyderm --set pachd.image.tag=1.7.0rc2 stable/pachyderm
   environment:
     PATH: $PATH:/usr/local/bin
   args:
