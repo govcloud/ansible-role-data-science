@@ -29,7 +29,7 @@
         copy: no
         src: "/tmp/{{ pach_tgz }}"
         dest: '/usr/local/bin'
-        creates: "/usr/local/bin/{{ pach_fullname }}"
+        creates: "/usr/local/bin"
 
   always:
     - name: cleanup...
@@ -39,13 +39,11 @@
         state: absent
 
 - name: Install Pachyderm via Helm
-  become: yes
   shell: helm install --namespace pachyderm --name pachyderm stable/pachyderm
   args:
     executable: /bin/bash
 
 - name: Allow services to act as admin general bypass for Pachyderm
-  become: yes
   shell: kubectl create clusterrolebinding serviceaccounts-cluster-admin --clusterrole=cluster-admin --group=system:serviceaccounts
   args:
     executable: /bin/bash
