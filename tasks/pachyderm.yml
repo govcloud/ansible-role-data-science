@@ -2,7 +2,7 @@
 - name: check for installation of pach
   become: yes
   stat:
-    path: "/usr/share/kubernetes/{{ pach_fullname }}"
+    path: "/usr/local/bin/pachctl"
   changed_when: false
   register: pach_dir
 
