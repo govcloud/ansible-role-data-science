@@ -47,7 +47,7 @@
     executable: /bin/bash
 
 - name: Install Pachyderm via Helm
-  shell: helm install --namespace pachyderm --name pachyderm --set pachd.image.tag=1.7.0rc2 stable/pachyderm
+  shell: helm install --namespace pachyderm --name pachyderm --set pachd.image.tag=1.7.0rc2 --set pachd.worker.tag=1.7.0rc2 stable/pachyderm
   environment:
     PATH: $PATH:/usr/local/bin
   args:
