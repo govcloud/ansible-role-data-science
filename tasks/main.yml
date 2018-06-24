@@ -13,5 +13,3 @@
     - pandas
     - pygments
     - scipy
-
-- include: pachyderm.yml

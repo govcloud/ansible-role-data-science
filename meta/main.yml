@@ -9,9 +9,6 @@ galaxy_info:
     versions:
       - 7
   galaxy_tags:
-    - kubernetes
-    - kubectl
     - data science
-    - pachyderm
 
 dependencies: []
